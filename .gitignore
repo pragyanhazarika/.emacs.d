@@ -1,7 +1,11 @@
-# Ignore everything
-*
+# Blocklist files/folders in same directory as the .gitignore file
+/*
 
 # But not these files...
 !.gitignore
 !init.el
+
+# Include .el files in folder custom, ignoring backups .el~
 !custom/
+custom/*
+!custom/*.el
