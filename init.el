@@ -1,11 +1,15 @@
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)        ; Disable visible scrollbar
-;; (tool-bar-mode -1)          ; Disable the toolbar
+(tool-bar-mode -1)          ; Disable the toolbar
 (tooltip-mode -1)           ; Disable tooltips
 (set-fringe-mode 10)        ; Give some breathing room
 
 (menu-bar-mode -1)            ; Disable the menu bar
+
+;; Change frame size
+(add-to-list 'default-frame-alist '(height . 40))
+(add-to-list 'default-frame-alist '(width . 120))
 
 ;; Prevent auto-save #abc# mess
 (setq auto-save-default nil)
@@ -13,9 +17,15 @@
 ;; Set up the visible bell
 (setq visible-bell t)
 
-(set-face-attribute 'default nil :font "Fira Code Retina" :height 160)
+(set-face-attribute 'default nil :font "Fira Code Retina" :height 140)
 
 (load-theme 'wombat)
+
+;; Make CTRL-C and CTRL-V work as copy and paste
+(cua-mode t)
+(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
+(transient-mark-mode 1) ;; No region when it is not highlighted
+(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -38,7 +48,7 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
+  :custom ((doom-modeline-height 10)))
 
 ;; Replace CTRL key with CMD key
 (setq mac-command-modifier 'control)
